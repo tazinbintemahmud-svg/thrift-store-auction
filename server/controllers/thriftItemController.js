@@ -1,5 +1,5 @@
 // server/controllers/thriftItemController.js
-const ThriftItem = require('../models/ThriftItem');
+const ThriftItem = require('../models/product');
 
 const getAllItems = async (req, res) => {
   try {

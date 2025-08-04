@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const thriftRoutes = require('./routes/thriftItems');
+const thriftRoutes = require('./routes/product_route');
 app.use('/api/items', thriftRoutes);  // <--- This is the API route
 
 mongoose.connect(process.env.MONGO_URI, {
