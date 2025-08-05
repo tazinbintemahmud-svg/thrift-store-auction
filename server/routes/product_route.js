@@ -1,31 +1,32 @@
-// server/routes/product_route.js
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/product');
+const Product = require('../models/product'); // adjust path as needed
 
-// Get all products
 router.get('/', async (req, res) => {
   try {
-    const items = await Product.find();
-    res.json(items);
+    const products = await Product.find();
+    res.json(products);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
-// Get a single product by ID
+
+
+
 router.get('/:id', async (req, res) => {
   try {
-    const item = await Product.findById(req.params.id);
-    if (!item) {
-      return res.status(404).json({ error: 'Item not found' });
-    }
-    res.json(item);
+    const product = await Product.findById(req.params.id);
+    if (!product) return res.status(404).json({ message: 'Product not found' });
+    res.json(product);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ message: 'Error fetching product' });
   }
 });
 
 module.exports = router;
+
+
+
 
 

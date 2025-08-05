@@ -1,13 +1,23 @@
 import React from 'react';
-import ThriftItemList from './components/ThriftItemList';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProductDetail from './pages/ProductDetail';
+import Shop from './pages/shop';
+// import ProductDetail from './pages/ProductDetail'; // <-- For future use
 
 function App() {
   return (
-    <div className="App">
-      <h1>VintageVault - Auction Thrift Store</h1>
-      <ThriftItemList />
-    </div>
+    <Router>
+      <div className="App">
+        
+        <Routes>
+          <Route path="/" element={<Shop />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          {/* <Route path="/product/:id" element={<ProductDetail />} /> */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
