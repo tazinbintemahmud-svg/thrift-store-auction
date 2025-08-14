@@ -4,20 +4,20 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-dotenv.config(); // Load environment variables from .env
+dotenv.config(); 
 const app = express();
 
-// Middleware
+
 app.use(cors());
-app.use(express.json()); // Parse incoming JSON data
+app.use(express.json()); 
 
-// Routes
 
-const productRoutes = require('./routes/product_route'); // adjust path
+
+const productRoutes = require('./routes/product_route'); 
 app.use('/api/products', productRoutes);
 
 
-// MongoDB Connection and Server Start
+
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true

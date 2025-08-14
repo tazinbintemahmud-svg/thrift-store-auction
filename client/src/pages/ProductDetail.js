@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './ProductDetail.css'; // optional CSS file
+import './ProductDetail.css'; 
 
 const ProductDetail = () => {
-  const { id } = useParams(); // Get product ID from URL
+  const { id } = useParams(); 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -46,7 +46,7 @@ const ProductDetail = () => {
       <img src={product.image} alt={product.title} className="product-image" />
       <p><strong>Description:</strong> {product.description}</p>
       <p><strong>Condition:</strong> {product.condition}</p>
-      <p><strong>Starting Bid:</strong> ${product.price}</p>
+      <p><strong>Starting Bid:</strong> BDT{product.price}</p>
       <p><strong>Time Left:</strong> {calculateTimeLeft(product.auctionEnds)}</p>
       <p><strong>Category:</strong> {product.category}</p>
       <p><strong>Brand:</strong> {product.brand}</p>

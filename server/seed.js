@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const ThriftItem = require('./models/ThriftItem');
 
-// Replace with your actual MongoDB connection string
+
 mongoose.connect('mongodb+srv://tazinbintemahmud:bb2025@cluster0.7rz1njt.mongodb.net/vintagevault?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,

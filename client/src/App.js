@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProductDetail from './pages/ProductDetail';
 import Shop from './pages/shop';
-// import ProductDetail from './pages/ProductDetail'; // <-- For future use
+
 
 function App() {
   return (
