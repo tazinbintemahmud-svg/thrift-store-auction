@@ -7,22 +7,31 @@ const Shop = () => {
   const [items, setItems] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [category, setCategory] = useState('All');
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/products');
-        setItems(response.data);
-      } catch (err) {
-        setError('Failed to fetch thrift items.');
-        console.error('Fetch error:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchItems();
-  }, []);
+  }, [searchTerm, category]);
+
+  const fetchItems = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/products', {
+        params: { search: searchTerm, category }
+      });
+      setItems(response.data);
+
+      // Extract unique categories
+      const uniqueCategories = ['All', ...new Set(response.data.map(item => item.category))];
+      setCategories(uniqueCategories);
+    } catch (err) {
+      setError('Failed to fetch thrift items.');
+      console.error('Fetch error:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -31,6 +40,24 @@ const Shop = () => {
   return (
     <div className="shop-container">
       <h1 className="shop-title">VintageVault - Thrift Items</h1>
+
+      {/* Search and Filter Section */}
+      <div className="filter-section">
+        <input
+          type="text"
+          placeholder="Search by name, brand, or category"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          {categories.map((cat, index) => (
+            <option key={index} value={cat}>{cat}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Products Grid */}
       <div className="products-grid">
         {items.map((item) => (
           <div className="product-card" key={item._id}>
@@ -51,3 +78,4 @@ const Shop = () => {
 };
 
 export default Shop;
+
