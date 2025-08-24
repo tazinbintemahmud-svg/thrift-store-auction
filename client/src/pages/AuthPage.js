@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // ✅ import navigate hook
+import { useNavigate } from "react-router-dom"; 
 import "./auth.css";
 
 const AuthPage = () => {
   const [showForm, setShowForm] = useState(null);
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // ✅ initialize navigate
-
+  const navigate = useNavigate(); 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -21,7 +20,7 @@ const AuthPage = () => {
 
       if (type === "login") {
         localStorage.setItem("user", JSON.stringify(res.data.user));
-        navigate("/shop"); // ✅ redirect to shop page after login
+        navigate("/shop"); 
       }
     } catch (err) {
       setMessage(err.response?.data?.msg || "Error occurred");

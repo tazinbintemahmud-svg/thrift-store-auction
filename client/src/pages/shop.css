@@ -50,7 +50,7 @@
   border: 1px solid #ccc;
 }
 
-/* === Product Grid + Cards === */
+
 
 .products-grid {
   display: grid;
@@ -113,7 +113,7 @@
   background-color: #0056b3;
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 600px) {
   .product-card {
     width: 100%;

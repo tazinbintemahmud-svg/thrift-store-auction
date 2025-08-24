@@ -7,14 +7,14 @@ const productSchema = new mongoose.Schema({
   category: String,
   condition: String,
   brand: String,
-  price: { type: Number, required: true },         // starting price
+  price: { type: Number, required: true },         
   auctionEnds: { type: Date, required: true },
 
   // NEW for bidding:
-  currentBid: { type: Number, default: null },      // highest bid so far (null = no bids yet)
+  currentBid: { type: Number, default: null },      
   bids: [
     {
-      userId: String,                               // basic for now; matches what you store in localStorage
+      userId: String,                               
       amount: Number,
       createdAt: { type: Date, default: Date.now }
     }

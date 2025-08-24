@@ -10,9 +10,9 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [bidAmount, setBidAmount] = useState('');
   const [msg, setMsg] = useState('');
-  const [timeLeft, setTimeLeft] = useState(''); // countdown text
+  const [timeLeft, setTimeLeft] = useState(''); 
 
-  // Read logged-in user from localStorage (from your login flow)
+  
   const user = useMemo(() => {
     try {
       return JSON.parse(localStorage.getItem('user') || 'null');
@@ -31,15 +31,15 @@ const ProductDetail = () => {
     }
   };
 
-  // initial load + 3s polling for "live" updates
+  
   useEffect(() => {
     loadProduct();
     const t = setInterval(loadProduct, 3000);
     return () => clearInterval(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [id]);
 
-  // countdown (updates every second)
+  
   useEffect(() => {
     if (!product?.auctionEnds) return;
     const tick = () => {
@@ -63,16 +63,16 @@ const ProductDetail = () => {
 
   if (!product) return <p style={{ padding: 20 }}>Loading...</p>;
 
-  // current price = highest bid or starting price
+  
   const current = product.currentBid != null ? product.currentBid : product.price;
-  const minNext = current + 1; // simple 1 unit increment
+  const minNext = current + 1; 
 
   const placeBid = async () => {
     setMsg('');
 
     if (!user) {
       setMsg('Please log in to place a bid.');
-      // navigate('/auth'); // uncomment if you want to auto-redirect
+      
       return;
     }
 
@@ -83,7 +83,7 @@ const ProductDetail = () => {
     try {
       const { data } = await axios.post(`http://localhost:5000/api/products/${id}/bid`, {
         amount: num,
-        userId: user.id || user._id || user.email, // whatever you saved on login
+        userId: user.id || user._id || user.email, 
       });
       setProduct(data.product);
       setBidAmount('');

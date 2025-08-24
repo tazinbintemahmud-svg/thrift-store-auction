@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductDetail from "./pages/ProductDetail";
-import Shop from "./pages/shop";   // ✅ Capitalize to match filename
+import Shop from "./pages/shop";   
 import AuthPage from "./pages/AuthPage";
 
 function App() {

@@ -22,7 +22,7 @@ const Shop = () => {
       });
       setItems(response.data);
 
-      // Extract unique categories
+      
       const uniqueCategories = ['All', ...new Set(response.data.map(item => item.category))];
       setCategories(uniqueCategories);
     } catch (err) {

@@ -93,7 +93,7 @@
   margin-top: 12px;
   width: 100%;
   padding: 12px 14px;
-  background: #7b3fe4;     /* purple button like in screenshot */
+  background: #7b3fe4;     
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -108,10 +108,10 @@
 
 .pd-message {
   margin-top: 10px;
-  color: #1a7f37; /* success green */
+  color: #1a7f37; 
 }
 
-/* Responsive */
+
 @media (max-width: 900px) {
   .pd-container {
     grid-template-columns: 1fr;
