@@ -16,9 +16,10 @@ app.use(express.json());
 // ===== Routes =====
 const productRoutes = require('./routes/product_route');
 const authRoutes = require('./routes/auth_routes');
-
+const userRoutes = require("./routes/user_route");
 app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);
+app.use("/api/users", userRoutes);
 
 // ===== Database Connection =====
 mongoose.connect(process.env.MONGO_URI, {

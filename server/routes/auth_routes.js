@@ -36,6 +36,7 @@ router.post("/login", async (req, res) => {
     
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid email or password" });
+    
 
     res.json({ msg: "Login successful", user: { id: user._id, name: user.name, email: user.email } });
   } catch (err) {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './shop.css';
 
 const Shop = () => {
@@ -10,6 +10,7 @@ const Shop = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState('All');
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchItems();
@@ -22,7 +23,6 @@ const Shop = () => {
       });
       setItems(response.data);
 
-      
       const uniqueCategories = ['All', ...new Set(response.data.map(item => item.category))];
       setCategories(uniqueCategories);
     } catch (err) {
@@ -39,7 +39,16 @@ const Shop = () => {
 
   return (
     <div className="shop-container">
-      <h1 className="shop-title">VintageVault - Thrift Items</h1>
+      {/* Header with Title + Profile Button */}
+      <div className="shop-header">
+        <h1 className="shop-title">VintageVault - Thrift Items</h1>
+        <button
+          onClick={() => navigate('/profile')}
+          className="profile-btn"
+        >
+          My Profile
+        </button>
+      </div>
 
       {/* Search and Filter Section */}
       <div className="filter-section">
@@ -78,4 +87,3 @@ const Shop = () => {
 };
 
 export default Shop;
-
