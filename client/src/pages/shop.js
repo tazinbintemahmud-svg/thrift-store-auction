@@ -10,9 +10,17 @@ const Shop = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState('All');
   const [categories, setCategories] = useState([]);
+  const [user, setUser] = useState(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
+    // ✅ load user from localStorage
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
+    }
+
     fetchItems();
   }, [searchTerm, category]);
 
@@ -42,12 +50,16 @@ const Shop = () => {
       {/* Header with Title + Profile Button */}
       <div className="shop-header">
         <h1 className="shop-title">VintageVault - Thrift Items</h1>
-        <button
-          onClick={() => navigate('/profile')}
-          className="profile-btn"
-        >
-          My Profile
-        </button>
+        
+        {/* ✅ Show button only if logged in */}
+        {user && (
+          <button
+            onClick={() => navigate('/profile')}
+            className="profile-btn"
+          >
+            My Profile
+          </button>
+        )}
       </div>
 
       {/* Search and Filter Section */}

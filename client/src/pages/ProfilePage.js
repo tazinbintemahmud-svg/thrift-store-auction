@@ -8,15 +8,19 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    
-    console.log("Stored user:", storedUser); // 👀 debug
     if (!storedUser) {
-
       navigate("/"); // redirect if not logged in
       return;
     }
 
-    fetchUser(storedUser._id);
+    // ✅ Try both id and _id (depending on how your login saves it)
+    const userId = storedUser._id || storedUser.id;
+    if (!userId) {
+      console.error("No user ID found in localStorage:", storedUser);
+      return;
+    }
+
+    fetchUser(userId);
   }, [navigate]);
 
   const fetchUser = async (id) => {
@@ -34,9 +38,13 @@ const ProfilePage = () => {
     <div className="flex flex-col items-center mt-10">
       <h1 className="text-2xl font-bold mb-4">User Profile</h1>
       <div className="border p-6 rounded shadow w-96 bg-white">
+        <p><strong>ID:</strong> {user._id}</p>
         <p><strong>Name:</strong> {user.name}</p>
         <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>Joined:</strong> {new Date(user.createdAt).toLocaleDateString()}</p>
+        <p>
+          <strong>Joined:</strong>{" "}
+          {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A"}
+        </p>
       </div>
     </div>
   );
