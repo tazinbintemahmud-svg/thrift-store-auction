@@ -12,9 +12,10 @@
 .pd-left { background: #fff; }
 
 .pd-image {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 500px;
+  height: auto;
+  object-fit: contain;  /* shows full image without cropping */
   border-radius: 8px;
   background: #f5f5f5;
 }
@@ -111,11 +112,10 @@
   color: #1a7f37; 
 }
 
-
 @media (max-width: 900px) {
   .pd-container {
     grid-template-columns: 1fr;
   }
-  .pd-image { height: 300px; }
+  .pd-image { max-height: 300px; }
 }
 
